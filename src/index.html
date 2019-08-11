@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .component {
+      border: 1px solid #afafaf;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+    ul {
+      width: 100%;
+      margin:0;
+      padding: 0;
+    }
+    li {
+      list-style-type: none;
+    }
+
+    li, input {
+      margin-bottom: 20px;
+    }
+
+    li:last-child{
+      margin-bottom: 0;
+    }
+
+
+    .text {
+      color: green;
+      margin-left: 20px;
+    }
+
+    .list-item {
+      border: 1px solid #afafaf;
+      width: 100%;
+      height: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    button {
+      height: 100%;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+  <body ng-app="app-root">
+    <some-component></some-component>
+  </body>
+</html>

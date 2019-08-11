@@ -1,0 +1,30 @@
+%capital-case {
+    text-transform: capitalize;
+}
+
+%upper-case {
+    text-transform: uppercase;
+}
+
+.component {
+  border: 1px solid black;
+  width: 300px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+ul > li {
+  list-style-type: none;
+}
+.text {
+  color: green;
+}
+
+.list-item {
+  border: 1px solid black;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,22 @@
+<!--<div>-->
+<!--  <button ng-click="$ctrl.changeName()">Click me</button>-->
+<!--  <div>{{$ctrl.name}}</div>-->
+<!--</div>-->
+
+
+
+<div class="component">
+  <div class="task">
+    <input ng-model="item" type="text">
+    <button class="btn" ng-click="$ctrl.toAddItem(item)">Add task</button>
+  </div>
+
+  <ul class="list">
+    <li class="list-item" ng-repeat="item in $ctrl.todoItems" ng-if="!item.finished">
+      <div class="text">{{item.description}}</div>
+      <button class="btn" ng-click="$ctrl.changeStatus(item.id)">Finished</button>
+    </li>
+  </ul>
+
+  <p>Количество заданий: <span ng-bind="$ctrl.todoItems.length"></span></p>
+</div>
