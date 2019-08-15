@@ -3,3 +3,5 @@ import { someComponent } from './component/app-component';
 
 module('app-root', [])
   .component('someComponent', someComponent);
+
+const inputEl = angular.element(document.querySelector('.input'));

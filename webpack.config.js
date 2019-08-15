@@ -119,7 +119,8 @@ module.exports = (env, argv) => {
     // devtool: 'eval-source-map',
     devServer: {
       contentBase: distPath,
-      hot: true
+      hot: true,
+      port: 9000
     }
   };
 

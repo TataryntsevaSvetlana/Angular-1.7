@@ -7,8 +7,8 @@
 
 <div class="component">
   <div class="task">
-    <input ng-model="item" type="text">
-    <button class="btn" ng-click="$ctrl.toAddItem(item)">Add task</button>
+    <input ng-model='$ctrl.item.description' type="text" class="input">
+    <button class="btn" ng-click="$ctrl.toAddItem($ctrl.item.description)">Add task</button>
   </div>
 
   <ul class="list">

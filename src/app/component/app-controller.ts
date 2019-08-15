@@ -1,5 +1,7 @@
+import {someComponent} from './app-component';
+
 interface IItem {
-  id: number;
+  id: any;
   description: string;
   finished: boolean;
 }
@@ -44,9 +46,16 @@ class AppController {
     findItem.finished = true;
   }
 
-  toAddItem(item: any): void{
-    console.log(item);
+  toAddItem(itemDescription: string): void {
+    const idTask: string = (Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase();
+    this.todoItems.push( {id: idTask, description: itemDescription, finished: false} );
 
+    this.clearInput(itemDescription);
+
+  }
+
+  clearInput(element: string):void {
+    const inputEl = angular.element(element);
   }
 
 }
