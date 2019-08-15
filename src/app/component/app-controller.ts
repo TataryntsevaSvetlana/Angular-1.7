@@ -1,5 +1,3 @@
-import {someComponent} from './app-component';
-
 interface IItem {
   id: any;
   description: string;
@@ -7,11 +5,11 @@ interface IItem {
 }
 
 class AppController {
-  name: string;
   todoItems: IItem[];
+  newToDoDescription: string;
+  quantityActiveItems: number;
 
   constructor() {
-    this.name = 'Solnishko';
     this.todoItems = [
       {
         id: 1,
@@ -29,34 +27,31 @@ class AppController {
     ];
   }
 
-  changeName(): void {
-    this.name = 'Telenok';
+  changeQuantityActiveItems(): number {
+    return this.todoItems.length - 1;
   }
-
   findItem(id: number, arr: IItem[]): IItem {
-    return arr.find((el): IItem => {
-     if (el.id === id) {
-       return el;
-     }
-    });
+    return arr.find(el => el.id === id);
   }
 
   changeStatus(id: number): void {
     const findItem = this.findItem(id, this.todoItems);
     findItem.finished = true;
+
+    this.changeQuantityActiveItems();
   }
 
-  toAddItem(itemDescription: string): void {
+  toAddItem(): void {
     const idTask: string = (Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase();
-    this.todoItems.push( {id: idTask, description: itemDescription, finished: false} );
+    this.todoItems.push( {id: idTask, description: this.newToDoDescription, finished: false} );
 
-    this.clearInput(itemDescription);
-
+    this.clearInput();
   }
 
-  clearInput(element: string):void {
-    const inputEl = angular.element(element);
+  clearInput(): void {
+    this.newToDoDescription = '';
   }
+
 
 }
 export { AppController };

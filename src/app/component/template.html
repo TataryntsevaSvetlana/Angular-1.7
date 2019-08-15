@@ -7,8 +7,8 @@
 
 <div class="component">
   <div class="task">
-    <input ng-model='$ctrl.item.description' type="text" class="input">
-    <button class="btn" ng-click="$ctrl.toAddItem($ctrl.item.description)">Add task</button>
+    <input ng-model='$ctrl.newToDoDescription' type="text" class="input">
+    <button class="btn" ng-click="$ctrl.toAddItem()">Add task</button>
   </div>
 
   <ul class="list">
@@ -18,5 +18,5 @@
     </li>
   </ul>
 
-  <p>Количество заданий: <span ng-bind="$ctrl.todoItems.length"></span></p>
+  <p>Количество заданий: <span>{{quantityActiveItems}}</span></p>
 </div>
