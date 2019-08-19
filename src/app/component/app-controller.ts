@@ -27,9 +27,22 @@ class AppController {
     ];
   }
 
-  changeQuantityActiveItems(): number {
-    return this.todoItems.length - 1;
+  changeQuantityActiveItems(): void {
+
+    this.todoItems.reduce((acc: number, item: IItem) => {
+      if (item.finished !== false) {
+        return acc = acc++;
+      };
+
+      console.log(item, 'item');
+    }, 0);
+
+    //
+    // console.log('this.todoItems.length', this.todoItems.length);
+
   }
+
+
   findItem(id: number, arr: IItem[]): IItem {
     return arr.find(el => el.id === id);
   }
@@ -46,12 +59,13 @@ class AppController {
     this.todoItems.push( {id: idTask, description: this.newToDoDescription, finished: false} );
 
     this.clearInput();
+    this.changeQuantityActiveItems();
+
   }
 
   clearInput(): void {
     this.newToDoDescription = '';
   }
-
 
 }
 export { AppController };
