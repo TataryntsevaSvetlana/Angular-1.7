@@ -18,28 +18,40 @@
       margin:0;
       padding: 0;
     }
+
     li {
       list-style-type: none;
     }
 
-    li, input {
+    .task {
+      width: 100%;
+      height: 100%;
+      border: 1px solid #afafaf;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      padding: 5px;
+    }
+
+    .newTask {
       margin-bottom: 20px;
     }
 
-    li:last-child{
-      margin-bottom: 0;
-    }
-
-
-    .text {
-      color: green;
+    .textField {
       margin-left: 20px;
+      display: flex;
+      align-items: center;
     }
 
-    .list-item {
-      border: 1px solid #afafaf;
+    .inputTextField {
       width: 100%;
-      height: 30px;
+      height: 100%;
+      margin: 0;
+      display: flex;
+      align-items: center;
+    }
+    .list-item {
+      width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
