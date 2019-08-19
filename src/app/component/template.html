@@ -23,8 +23,8 @@
       </div>
 
 
-      <div class='task' ng-if="item.id === $ctrl.editableItemId">
-        <input class="inputTextField"  ng-model='$ctrl.newEditableDescription' type="text"  ng-focus="">
+      <div class='item.description' ng-if="item.id === $ctrl.editableItemId">
+        <input ng-value="item.description" class="inputTextField"  ng-model='$ctrl.newEditableDescription' type="text"  ng-focus="">
         <button class="btn" ng-click="$ctrl.saveEditableItem(item.id)">Save</button>
       </div>
 
