@@ -6,17 +6,30 @@
 
 
 <div class="component">
-  <div class="task">
+  <div class="newTask">
     <input ng-model='$ctrl.newToDoDescription' type="text" class="input">
     <button class="btn" ng-click="$ctrl.toAddItem()">Add task</button>
   </div>
 
   <ul class="list">
     <li class="list-item" ng-repeat="item in $ctrl.todoItems" ng-if="!item.finished">
-      <div class="text">{{item.description}}</div>
-      <button class="btn" ng-click="$ctrl.changeStatus(item.id)">Finished</button>
+
+      <div class='task' ng-if="item.id !== $ctrl.editableItemId">
+        <div class="textField">{{item.description}}</div>
+        <div class="btnGroup">
+          <button class="btn" ng-click="$ctrl.editTask(item.id)">Edit</button>
+          <button class="btn" ng-click="$ctrl.changeStatus(item.id)">Finished</button>
+        </div>
+      </div>
+
+
+      <div class='task' ng-if="item.id === $ctrl.editableItemId">
+        <input class="inputTextField"  ng-model='$ctrl.newEditableDescription' type="text"  ng-focus="">
+        <button class="btn" ng-click="$ctrl.saveEditableItem(item.id)">Save</button>
+      </div>
+
     </li>
   </ul>
 
-  <p>Количество заданий: <span>{{quantityActiveItems}}</span></p>
+  <p>Количество заданий: <span>{{$ctrl.getQuantityActiveItems()}}</span></p>
 </div>

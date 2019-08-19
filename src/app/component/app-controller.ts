@@ -1,13 +1,14 @@
 interface IItem {
-  id: any;
+  id: number;
   description: string;
   finished: boolean;
 }
 
 class AppController {
   todoItems: IItem[];
+  editableItemId: number;
   newToDoDescription: string;
-  quantityActiveItems: number;
+  newEditableDescription: string;
 
   constructor() {
     this.todoItems = [
@@ -25,11 +26,18 @@ class AppController {
         finished: false,
       }
     ];
+
   }
 
-  changeQuantityActiveItems(): number {
-    return this.todoItems.length - 1;
+  getQuantityActiveItems(): number {
+    return this.todoItems.reduce((acc: number, item: IItem) => {
+      if (item.finished !== false) {
+        acc = acc - 1;
+      }
+      return acc;
+    }, this.todoItems.length);
   }
+
   findItem(id: number, arr: IItem[]): IItem {
     return arr.find(el => el.id === id);
   }
@@ -37,21 +45,33 @@ class AppController {
   changeStatus(id: number): void {
     const findItem = this.findItem(id, this.todoItems);
     findItem.finished = true;
-
-    this.changeQuantityActiveItems();
   }
 
   toAddItem(): void {
-    const idTask: string = (Date.now().toString(36) + Math.random().toString(36).substr(2, 5)).toUpperCase();
+    const idTask: number = Date.now();
     this.todoItems.push( {id: idTask, description: this.newToDoDescription, finished: false} );
 
-    this.clearInput();
+    this.clearAddInput();
   }
 
-  clearInput(): void {
+  clearAddInput(): void {
     this.newToDoDescription = '';
   }
 
+  editTask(id: number) {
+    this.editableItemId = id;
+  }
 
+  saveEditableItem(id: number): void {
+    const findItem = this.findItem(id, this.todoItems);
+    findItem.description = this.newEditableDescription;
+
+    this.clearEditableInput();
+    this.editableItemId = 0;
+  }
+
+  clearEditableInput(): void {
+    this.newEditableDescription = '';
+  }
 }
 export { AppController };
