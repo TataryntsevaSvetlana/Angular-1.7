@@ -26,7 +26,6 @@ class AppController {
         finished: false,
       }
     ];
-
   }
 
   getQuantityActiveItems(): number {
