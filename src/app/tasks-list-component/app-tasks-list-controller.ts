@@ -1,31 +1,51 @@
-interface IItem {
+import {IRootScopeService} from "angular";
+
+export interface IItem {
   id: number;
   description: string;
   finished: boolean;
+  date: string;
+  title: string;
 }
 
-class AppController {
+class AppTasksListController {
   todoItems: IItem[];
   editableItemId: number;
   newToDoDescription: string;
-  newEditableDescription: string;
+  newToDoDate: string;
+  newToDoTitle: string;
 
-  constructor() {
+  constructor($rootScope: IRootScopeService) {
+    $rootScope.$on('addTask', (event, obj) => {
+      this.addItem(obj);
+    });
+
     this.todoItems = [
       {
         id: 1,
         description: 'to eat',
         finished: false,
+        date: '15.08.19',
+        title: 'Home'
       }, {
         id: 2,
         description: 'to sleep',
         finished: false,
+        date: '05.07.19',
+        title: 'Home'
       }, {
         id: 3,
         description: 'to work',
         finished: false,
+        date: '22.08.19',
+        title: 'Work'
       }
     ];
+  }
+
+  addItem(obj: IItem): void {
+    this.todoItems.push(obj);
+    console.log(this.todoItems);
   }
 
   getQuantityActiveItems(): number {
@@ -44,33 +64,20 @@ class AppController {
   changeStatus(id: number): void {
     const findItem = this.findItem(id, this.todoItems);
     findItem.finished = true;
+    console.log('this.todoItems after change status', this.todoItems);
   }
 
-  toAddItem(): void {
-    const idTask: number = Date.now();
-    this.todoItems.push( {id: idTask, description: this.newToDoDescription, finished: false} );
 
-    this.clearAddInput();
-  }
-
-  clearAddInput(): void {
-    this.newToDoDescription = '';
-  }
 
   editTask(id: number) {
     this.editableItemId = id;
   }
 
-  saveEditableItem(id: number): void {
-    const findItem = this.findItem(id, this.todoItems);
-    findItem.description = this.newEditableDescription;
+  saveEditableItem = (id: number, description: string): void => {
+    const itemToUpdate = this.findItem(id, this.todoItems);
 
-    this.clearEditableInput();
-    this.editableItemId = 0;
-  }
-
-  clearEditableInput(): void {
-    this.newEditableDescription = '';
+    itemToUpdate.description = description;
+    this.editableItemId = undefined;
   }
 }
-export { AppController };
+export { AppTasksListController };

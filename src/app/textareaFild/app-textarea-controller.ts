@@ -1,0 +1,3 @@
+class TextareaController {
+}
+export { TextareaController };
