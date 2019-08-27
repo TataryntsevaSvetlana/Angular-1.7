@@ -1,4 +1,4 @@
-import {IRootScopeService} from "angular";
+import {IRootScopeService} from 'angular';
 
 export interface IItem {
   id: number;
@@ -55,6 +55,7 @@ class AppTasksListController {
       }
       return acc;
     }, this.todoItems.length);
+    console.log(this.todoItems);
   }
 
   findItem(id: number, arr: IItem[]): IItem {

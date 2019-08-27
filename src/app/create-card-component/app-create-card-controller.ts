@@ -20,7 +20,6 @@ class AppCreateCardController {
       date: this.newToDoDate,
       title: this.newToDoTitle
     });
-
     this.clearAddInput();
   }
 

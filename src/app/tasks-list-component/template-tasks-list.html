@@ -1,3 +1,4 @@
+<p>Количество заданий: <span>{{$ctrl.getQuantityActiveItems()}}</span></p>
 <ul class="tasksListComponent">
   <li class="list-item" ng-repeat="item in $ctrl.todoItems" ng-if="!item.finished">
     <app-task-item-component
