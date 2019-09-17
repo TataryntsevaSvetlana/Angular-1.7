@@ -11,5 +11,4 @@ const appTaskItemComponent = {
     saveEditableItem: '=',
   },
 };
-
 export { appTaskItemComponent };
