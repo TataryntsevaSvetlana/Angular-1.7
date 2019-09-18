@@ -28,14 +28,12 @@ function ToDoListService() {
       title: 'Work'
     }
   ];
-
-
   return {
-    getTodoItemsS(): IItem[] {
+    getTodoItems(): IItem[] {
       return items;
     },
 
-    addItemS(obj: IItem): void {
+    addItem(obj: IItem): void {
       items.push(obj);
     },
 
@@ -47,7 +45,7 @@ function ToDoListService() {
       return this.items.lenght;
     },
 
-    getQuantityActiveItemsS(): number {
+    getQuantityActiveItems(): number {
       return this.items.reduce((acc: number, item: IItem) => {
         if (item.finished !== false) {
           acc = acc - 1;
@@ -61,7 +59,7 @@ function ToDoListService() {
       findItem.finished = true;
     },
 
-    editTaskS(id: number): void {
+    editTask(id: number): void {
       this.editableItemId = id;
     },
 
@@ -71,7 +69,7 @@ function ToDoListService() {
       itemToUpdate.description = description;
       this.editableItemId = undefined;
     }
-  }
+  };
 }
 
 export { ToDoListService, IItem };
