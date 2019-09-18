@@ -41,7 +41,7 @@ function ToDoListService() {
       return arr.find(el => el.id === id);
     },
 
-    getTotalLengthS(): number {
+    getTotalLength(): number {
       return this.items.lenght;
     },
 
@@ -54,7 +54,7 @@ function ToDoListService() {
       }, this.getTotalLength());
     },
 
-    changeStatusS(id: number): void {
+    changeStatus(id: number): void {
       const findItem = this.findItem(id, this.items);
       findItem.finished = true;
     },
@@ -63,7 +63,7 @@ function ToDoListService() {
       this.editableItemId = id;
     },
 
-    saveEditableItemS(id: number, description: string): void  {
+    saveEditableItem(id: number, description: string): void  {
       const itemToUpdate = this.findItem(id, this.items);
 
       itemToUpdate.description = description;

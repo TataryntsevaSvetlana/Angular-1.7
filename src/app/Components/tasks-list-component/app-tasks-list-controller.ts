@@ -1,12 +1,13 @@
 import { IItem } from '../../Services/ToDoListService';
 
 class AppTasksListController {
+  ToDoListService: any;
+  todoItems: IItem[];
   editableItemId: number;
   newToDoDescription: string;
   newToDoDate: string;
   newToDoTitle: string;
-  ToDoListService: any;
-  todoItems: IItem[];
+
 
   constructor(ToDoListService) {
     this.ToDoListService = ToDoListService;
@@ -15,19 +16,19 @@ class AppTasksListController {
   }
 
   getQuantityActiveItems(): number {
-    return this.ToDoListService.getQuantityActiveItemsS();
+    return this.ToDoListService.getQuantityActiveItems();
   }
 
   changeStatus(id: number): void {
-    return this.ToDoListService.changeStatusS(id);
+    return this.ToDoListService.changeStatus(id);
   }
 
   editTask(id: number) {
-    return this.ToDoListService.editTaskS(id);
+    return this.ToDoListService.editTask(id);
   }
 
   saveEditableItem = (id: number, description: string): void => {
-    return this.ToDoListService.saveEditableItemS(id, description);
+    return this.ToDoListService.saveEditableItem(id, description);
   }
 }
 export { AppTasksListController };

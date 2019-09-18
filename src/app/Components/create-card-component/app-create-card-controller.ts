@@ -1,25 +1,23 @@
-import {IRootScopeService} from 'angular';
+import { IItem } from '../../Services/ToDoListService';
 
 class AppCreateCardController {
   newToDoDate: string;
   newToDoTitle: string;
   newToDoTask: string;
-  $rootScope: IRootScopeService;
+  ToDoListService: any;
+  todoItems: IItem[];
 
-  constructor($rootScope: IRootScopeService) {
+
+  constructor(ToDoListService) {
     this.newToDoTask = '';
     this.newToDoTitle = 'Work';
-    this.$rootScope = $rootScope;
+    this.ToDoListService = ToDoListService;
+
+    this.todoItems = this.ToDoListService.getTodoItems();
   }
 
   addItem(): any {
-    this.$rootScope.$emit('addTask', {
-      id:  Date.now(),
-      description: this.newToDoTask,
-      finished: false,
-      date: this.newToDoDate,
-      title: this.newToDoTitle
-    });
+
     this.clearAddInput();
   }
 
