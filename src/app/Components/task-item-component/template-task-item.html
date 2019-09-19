@@ -6,7 +6,7 @@
 
     <div class="btnGroup">
       <app-fancy-button btn-value="Edit" handle-click="$ctrl.editTask($ctrl.item.id)"></app-fancy-button>
-      <app-fancy-button btn-value="Finished" handle-click="$ctrl.changeStatus($ctrl.item.id)"></app-fancy-button>
+      <app-fancy-button btn-value="Finished" handle-click="$ctrl.changeStatus(item.id)"></app-fancy-button>
     </div>
   </div>
 
@@ -14,6 +14,6 @@
     <app-textarea-field value="$ctrl.newDescription"></app-textarea-field>
     <app-fancy-button
       btn-value="Save"
-      handle-click="$ctrl.saveEditableItem($ctrl.item.id, $ctrl.newDescription)">
+      handle-click="$ctrl.saveEditableItem(item.id, $ctrl.newDescription)">
     </app-fancy-button>
   </div>

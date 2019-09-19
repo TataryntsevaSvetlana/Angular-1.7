@@ -24,6 +24,7 @@ class AppTasksListController {
   }
 
   editTask(id: number) {
+    console.log(id);
     return this.ToDoListService.editTask(id);
   }
 

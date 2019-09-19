@@ -59,8 +59,8 @@ function ToDoListService() {
       findItem.finished = true;
     },
 
-    editTask(id: number): void {
-      this.editableItemId = id;
+    editTask(id: number): number {
+      return this.editableItemId = id;
     },
 
     saveEditableItem(id: number, description: string): void  {

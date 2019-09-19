@@ -1,6 +1,7 @@
 import { IItem } from '../../Services/ToDoListService';
 
 class AppTaskItemController {
+  editableItemId: number;
   newDescription: string;
   ToDoListService: any;
   todoItems: IItem[];
@@ -12,8 +13,9 @@ class AppTaskItemController {
 
   }
 
-  editTask(id): void {
-    console.log(123,id);
+  editTask(id: number): void {
+    const editableItemId = this.ToDoListService.editTask(id);
+
   }
 }
 export { AppTaskItemController };
