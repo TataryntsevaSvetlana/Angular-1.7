@@ -1,9 +1,11 @@
-import { AppFancyBtnController } from './app-fancy-btn-controller';
-
-
 const appFancyButton = {
-  controller: AppFancyBtnController,
-  template: require('./template-fancy-btn.html'),
+  controller: class AppFancyBtnController { },
+  template: `
+    <button class="btn-primary"
+      ng-click="$ctrl.handleClick()">
+      {{$ctrl.btnValue}}
+    </button>
+  `,
   bindings: {
     btnValue: '@',
     handleClick: '&'

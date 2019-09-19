@@ -7,34 +7,35 @@ interface IItem {
 }
 
 function ToDoListService() {
-  const items = [
-    {
-      id: 1,
-      description: 'to eat',
-      finished: false,
-      date: '15.08.19',
-      title: 'Home'
-    }, {
-      id: 2,
-      description: 'to sleep',
-      finished: false,
-      date: '05.07.19',
-      title: 'Home'
-    }, {
-      id: 3,
-      description: 'to work',
-      finished: false,
-      date: '22.08.19',
-      title: 'Work'
-    }
-  ];
   return {
+    items: [
+      {
+        id: 1,
+        description: 'to eat',
+        finished: false,
+        date: '15.08.19',
+        title: 'Home'
+      }, {
+        id: 2,
+        description: 'to sleep',
+        finished: false,
+        date: '05.07.19',
+        title: 'Home'
+      }, {
+        id: 3,
+        description: 'to work',
+        finished: false,
+        date: '22.08.19',
+        title: 'Work'
+      }
+    ],
+
     getTodoItems(): IItem[] {
-      return items;
+      return this.items;
     },
 
     addItem(obj: IItem): void {
-      items.push(obj);
+      this.items.push(obj);
     },
 
     findItem(id: number, arr: IItem[]): IItem {
@@ -55,11 +56,12 @@ function ToDoListService() {
     },
 
     changeStatus(id: number): void {
-      const findItem = this.findItem(id, this.items);
-      findItem.finished = true;
+      const foundItem = this.findItem(id, this.items);
+
+      foundItem.finished = true;
     },
 
-    editTask(id: number): number {
+    setEditableItemId(id: number): number {
       return this.editableItemId = id;
     },
 
