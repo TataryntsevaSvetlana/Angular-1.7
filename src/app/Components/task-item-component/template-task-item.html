@@ -5,8 +5,8 @@
     <div class="textField">{{$ctrl.item.description}}</div>
 
     <div class="btnGroup">
-      <app-fancy-button btn-value="Edit" handle-click="$ctrl.editTask(item.id)"></app-fancy-button>
-      <app-fancy-button btn-value="Finished" handle-click="$ctrl.changeStatus(item.id)"></app-fancy-button>
+      <app-fancy-button btn-value="Edit" handle-click="$ctrl.editTask($ctrl.item.id)"></app-fancy-button>
+      <app-fancy-button btn-value="Finished" handle-click="$ctrl.changeStatus($ctrl.item.id)"></app-fancy-button>
     </div>
   </div>
 
