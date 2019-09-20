@@ -1,5 +1,9 @@
 const appTextareaFieldComponent = {
+
+
   controller: class TextareaController { },
+
+
   template: `
     <textarea
       class="textareaField"
@@ -8,6 +12,9 @@ const appTextareaFieldComponent = {
       rows='5'
       ng-maxlength="200">
     </textarea>`,
+
+
+
   bindings: {
     value: '=',
   },

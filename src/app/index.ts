@@ -10,7 +10,18 @@ import { ToDoListService } from './Services/ToDoListService';
 // const appModule = ;
 
 module('app-root', [])
-  .factory('ToDoListService', ToDoListService)
+  .service('ToDoListService', ToDoListService)
+  // .factory('ToDoListService', [() => {
+  //   const value = 'data';
+  //   return new ToDoListService(); }])
+  // .provider('ToDoListService', [() => {
+  //   return {
+  //     $get: () => {
+  //       return new ToDoListService();
+  //     }
+  //   };
+  // }])
+
   .component('appTasksListComponent', appTasksListComponent)
   .component('appCreateCardComponent', appCreateCardComponent)
   .component('appTaskItemComponent', appTaskItemComponent)
