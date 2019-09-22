@@ -4,23 +4,20 @@ const appTaskItemComponent = {
 
 
   template: `
-    <div class='task' ng-if="$ctrl.item.id !== $ctrl.editableItemId">
-      <div>{{$ctrl.item.title}}</div>
-      <div>{{$ctrl.item.date}}</div>
-  
-      <div class="textField">{{$ctrl.item.description}}</div>
+    <div>
+      <div></div>
+      <div></div>
+      <div class="textField"></div>
   
       <div class="btnGroup">
-        <app-fancy-button btn-value="Edit" handle-click="$ctrl.setEditableItemId(item.id)"></app-fancy-button>
-        <app-fancy-button btn-value="Finished" handle-click="$ctrl.changeStatus(item.id)"></app-fancy-button>
+        <app-fancy-button btn-value="Edit"></app-fancy-button>
+        <app-fancy-button btn-value="Finished""></app-fancy-button>
       </div>
     </div>
   
-    <div class='task' ng-if="$ctrl.item.id === $ctrl.editableItemId">
-      <app-textarea-field value="$ctrl.item.description"></app-textarea-field>
-      <app-fancy-button
-        btn-value="Save"
-        handle-click="$ctrl.biba(item.id, $ctrl.newDescription)">
+    <div>
+      <app-textarea-field ></app-textarea-field>
+      <app-fancy-button>
       </app-fancy-button>
     </div>`,
 
@@ -30,16 +27,6 @@ const appTaskItemComponent = {
     biba(a,b){
       console.log(a,b);
     }
-  },
-
-
-  bindings: {
-    editableItemId: '=',
-    item: '=',
-    newDescription: '=',
-    setEditableItemId: '&',
-    changeStatus: '&',
-    saveEditableItem: '=',
   },
 };
 

@@ -6,11 +6,13 @@ import { appTextareaFieldComponent } from './Components/textareaFild/app-textare
 import { appFancyButton } from './Components/fancy-button/app-fancy-btn-component';
 import { appPetList } from './Components/pet-list/app-pet-list-component';
 import { ToDoListService } from './Services/ToDoListService';
+import { app2Component } from '../app2/app-2-component';
 
 // const appModule = ;
 
 module('app-root', [])
-  .service('ToDoListService', ToDoListService)
+  .component('app2Component', app2Component)
+  // .service('ToDoListService', ToDoListService)
   // .factory('ToDoListService', [() => {
   //   const value = 'data';
   //   return new ToDoListService(); }])
@@ -22,11 +24,11 @@ module('app-root', [])
   //   };
   // }])
 
-  .component('appTasksListComponent', appTasksListComponent)
-  .component('appCreateCardComponent', appCreateCardComponent)
-  .component('appTaskItemComponent', appTaskItemComponent)
-  .component('appPetList', appPetList)
-  .component('appTextareaField', appTextareaFieldComponent)
+  // .component('appTasksListComponent', appTasksListComponent)
+  // .component('appCreateCardComponent', appCreateCardComponent)
+  // .component('appTaskItemComponent', appTaskItemComponent)
+  // .component('appPetList', appPetList)
+  // .component('appTextareaField', appTextareaFieldComponent)
   .component('appFancyButton', appFancyButton);
 
 

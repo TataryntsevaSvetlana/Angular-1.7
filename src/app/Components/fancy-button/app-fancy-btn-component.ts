@@ -5,17 +5,14 @@ const appFancyButton = {
 
 
   template: `
-    <button class="btn-primary"
-      ng-click="$ctrl.handleClick()">
-      {{$ctrl.btnValue}}
+    <button class="btn-primary" ng-click="$ctrl.handleClick()">
+      {{$ctrl.value}}
     </button>
   `,
-
-
-
   bindings: {
-    btnValue: '@',
-    handleClick: '&'
+    handleClick: '&',
+    value: '@'
   }
+
 };
 export { appFancyButton };
