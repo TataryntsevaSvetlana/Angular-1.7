@@ -18,8 +18,8 @@ const appCreateCardComponent = {
     }
 
     addItem(): any {
-
-      this.clearAddInput();
+      console.log('Add item');
+      // this.clearAddInput();
     }
 
 

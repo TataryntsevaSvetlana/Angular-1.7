@@ -31,7 +31,6 @@ const appTasksListComponent = {
 
     constructor(ToDoListService) {
       this.ToDoListService = ToDoListService;
-
       this.todoItems = this.ToDoListService.getTodoItems();
     }
 

@@ -6,12 +6,12 @@ const appFancyButton = {
 
   template: `
     <button class="btn-primary" ng-click="$ctrl.handleClick()">
-      {{$ctrl.value}}
+      {{$ctrl.btnValue}}
     </button>
   `,
   bindings: {
     handleClick: '&',
-    value: '@'
+    btnValue: '@'
   }
 
 };
