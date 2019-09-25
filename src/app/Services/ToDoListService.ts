@@ -9,7 +9,6 @@ interface IItem {
 
 class ToDoListService {
   items: IItem[];
-  editableItemId: number;
 
   constructor() {
     this.items = [
@@ -17,31 +16,31 @@ class ToDoListService {
         id: 1,
         description: 'to eat',
         finished: false,
-        date: '15.08.19',
+        date: 'Wed Sep 25 2019 20:37:56 GMT+0300 (Eastern European Summer Time)',
         title: 'Home'
       }, {
         id: 2,
         description: 'to sleep',
         finished: false,
-        date: '05.07.19',
+        date: 'Wed Sep 25 2019 20:37:56 GMT+0300 (Eastern European Summer Time)',
         title: 'Home'
       }, {
         id: 3,
         description: 'to work',
         finished: false,
-        date: '22.08.19',
+        date: 'Wed Sep 25 2019 20:37:56 GMT+0300 (Eastern European Summer Time)',
         title: 'Work'
       }, {
         id: 4,
         description: 'to learn Angular JS',
         finished: false,
-        date: '26.08.19',
+        date: 'Wed Sep 25 2019 20:37:56 GMT+0300 (Eastern European Summer Time)',
         title: 'Studies'
       }, {
         id: 5,
         description: 'to meet with friends',
         finished: false,
-        date: '20.09.19',
+        date: 'Wed Sep 25 2019 20:37:56 GMT+0300 (Eastern European Summer Time)',
         title: 'Friends'
       }
     ];
@@ -78,15 +77,22 @@ class ToDoListService {
     foundItem.finished = true;
   }
 
-  // setEditableItemId(id: number): number {
-  //   return this.editableItemId = id;
-  // }
-
-  saveEditableItem(id: number, description: string): void  {
+  saveEditableItem(id: number): void  {
     const itemToUpdate = this.findItem(id, this.items);
 
-    itemToUpdate.description = description;
-    this.editableItemId = undefined;
+    console.log(itemToUpdate.description);
+  }
+
+  sortByDateDown(): void {
+      this.items.sort((a, b) => {
+      return a.date > b.date ? 1 : -1;
+    });
+  }
+  sortByDateUp(): void {
+
+    this.items.sort((a, b) => {
+      return a.date < b.date ? 1 : -1;
+    });
   }
 
 }

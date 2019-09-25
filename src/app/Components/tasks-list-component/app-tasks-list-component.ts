@@ -2,32 +2,27 @@ import {IItem} from '../../Services/ToDoListService';
 
 const appTasksListComponent = {
 
-
   template: `
-    <p>Количество заданий: <span>{{ getQuantityActiveItems() }}</span></p>
+    <p>Количество заданий: <span>{{ $ctrl.getQuantityActiveItems() }}</span></p>
+    <app-fancy-button  btn-value="Sort by date down" handle-click="$ctrl.sortByDateDown()"></app-fancy-button>
+    <app-fancy-button  btn-value="Sort by date up" handle-click="$ctrl.sortByDateUp()"></app-fancy-button>
+    
     <ul class="tasksListComponent">
       <li class="list-item" ng-repeat="item in $ctrl.todoItems" ng-if="!item.finished">
         <app-task-item-component
           item="item"
-          new-description="$ctrl.newEditableDescription"
           editable-item-id="$ctrl.editableItemId"
           set-editable-item-id="$ctrl.setEditableItemId(item.id)"
           change-status="$ctrl.changeStatus(item.id)"
-          save-editable-item="$ctrl.saveEditableItem"
+          save-editable-item="$ctrl.saveEditableItem(item)"
         ></app-task-item-component>
       </li>
     </ul>`,
 
-
-
   controller: class AppTasksListController {
     ToDoListService: any;
     todoItems: IItem[];
-    editableItemId: number;
-    newToDoDescription: string;
-    newToDoDate: string;
-    newToDoTitle: string;
-
+    editableItemId: any;
 
     constructor(ToDoListService) {
       this.ToDoListService = ToDoListService;
@@ -42,22 +37,23 @@ const appTasksListComponent = {
       this.ToDoListService.changeStatus(id);
     }
 
-    setEditableItemId(id: number, value: string): void {
+    setEditableItemId(id: number): void {
       console.log('editable id: ', id);
-      console.log('newToDoDescription: ', this.newToDoDescription);
-
-
       this.editableItemId = id;
-      // this.showItemDescription(value);
     }
 
-    showItemDescription(value: string): string {
-      console.log(value);
-      return value;
+    saveEditableItem(item: IItem): void {
+      console.log(item);
+      this.editableItemId = '';
     }
 
-    saveEditableItem = (id: number, description: string): void => {
-      return this.ToDoListService.saveEditableItem(id, description);
+    sortByDateDown(): void {
+      console.log('down');
+      this.ToDoListService.sortByDateDown();
+    }
+    sortByDateUp(): void {
+      console.log('up');
+      this.ToDoListService.sortByDateUp();
     }
   },
 };

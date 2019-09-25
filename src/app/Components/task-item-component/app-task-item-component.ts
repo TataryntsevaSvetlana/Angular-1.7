@@ -1,32 +1,38 @@
-import {IItem} from '../../Services/ToDoListService';
-
 const appTaskItemComponent = {
 
 
   template: `
     <div>
-      <div ng-model="$ctrl.newToDoTitle"></div>
-      <div ng-model="$ctrl.newToDoDate"></div>
-      <div class="textField"></div>
+      <div ng-model="$ctrl.newToDoTitle">Title: {{$ctrl.item.title}}</div>
+      <div ng-model="$ctrl.newToDoDate">Date: {{$ctrl.item.date}}</div>
+      <div class="textField"> Description: {{$ctrl.item.description}}</div>
+      <div>id:{{$ctrl.item.id}}</div>
+      <div>Editable id:{{$ctrl.editableItemId}}</div>
   
-      <div class="btnGroup" ng-if="">
-        <app-fancy-button btn-value="Edit" handle-click="$ctrl.boba()"</app-fancy-button>
-        <app-fancy-button btn-value="Finished"></app-fancy-button>
+      <div class="btnGroup" ng-if="$ctrl.item.id !== $ctrl.editableItemId">
+        <div>
+          <app-fancy-button btn-value="Edit" handle-click="$ctrl.setEditableItemId(item.id)"></app-fancy-button>
+          <app-fancy-button btn-value="Finished" handle-click="$ctrl.changeStatus()"></app-fancy-button>
+        </div>
       </div>
-    </div>
-  
-    <div ng-if="">
-      <app-textarea-field btn-value="Save" handle-click="$ctrl.boba()"></app-textarea-field>
-      <app-fancy-button btn-value="Save" handle-click="$ctrl.boba()">
-      <!--</app-fancy-button btn-value="" btn-click="$ctrl.boba()">-->
+      
+      <div ng-if="$ctrl.item.id === $ctrl.editableItemId">
+       <app-textarea-field value="$ctrl.item.description"></app-textarea-field>
+       <app-fancy-button btn-value="Save" handle-click="$ctrl.saveEditableItem(item)"></app-fancy-button>
+      </div>
     </div>`,
 
 
   controller: class AppTaskItemController {
+
   },
 
   bindings: {
-
+    item: '=',
+    setEditableItemId: '&',
+    changeStatus: '&',
+    saveEditableItem: '&',
+    editableItemId: '=',
   }
 };
 

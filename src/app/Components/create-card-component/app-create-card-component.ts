@@ -11,18 +11,26 @@ const appCreateCardComponent = {
 
     constructor(ToDoListService) {
       this.newToDoTask = '';
-      this.newToDoTitle = 'Work';
+      this.newToDoTitle = '';
       this.ToDoListService = ToDoListService;
 
       this.todoItems = this.ToDoListService.getTodoItems();
     }
 
-    addItem(): any {
-      console.log('Add item');
-      // this.clearAddInput();
+    addItem(): void {
+      this.todoItems.push({
+        id: this.setId(),
+        description: this.newToDoTask,
+        finished: false,
+        date: this.newToDoDate,
+        title: this.newToDoTitle
+      })
+      this.clearAddInput();
     }
 
-
+    setId(): any {
+      return new Date().getTime();
+    }
     clearAddInput(): void {
       this.newToDoTask = '';
       this.newToDoDate = '';
@@ -69,6 +77,7 @@ const appCreateCardComponent = {
 
   </div>
 </div>`,
+
   bindings: {
     editableItemId: '=',
     item: '=',

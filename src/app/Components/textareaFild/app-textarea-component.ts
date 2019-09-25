@@ -16,7 +16,7 @@ const appTextareaFieldComponent = {
 
 
   bindings: {
-    value: '=',
+    value: '<',
   },
 };
 export { appTextareaFieldComponent };
