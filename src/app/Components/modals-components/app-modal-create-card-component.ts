@@ -1,3 +1,5 @@
+import * as angular from 'angular';
+import * as moment from 'moment';
 import {IItem} from '../../Services/ToDoListService';
 
 const appCreateCardComponent = {
@@ -12,17 +14,20 @@ const appCreateCardComponent = {
     constructor(ToDoListService) {
       this.newToDoTask = '';
       this.newToDoTitle = '';
+      this.newToDoDate = '';
       this.ToDoListService = ToDoListService;
 
       this.todoItems = this.ToDoListService.getTodoItems();
     }
 
     addItem(): void {
+      console.log('this create card', this);
+
       this.todoItems.push({
         id: this.setId(),
         description: this.newToDoTask,
         finished: false,
-        date: this.newToDoDate,
+        date: moment(this.newToDoDate).format('YYYY-DD-MM'),
         title: this.newToDoTitle
       })
       this.clearAddInput();
