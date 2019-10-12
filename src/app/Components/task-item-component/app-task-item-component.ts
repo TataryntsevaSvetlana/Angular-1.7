@@ -1,10 +1,12 @@
+import {IItem} from '../../Services/ToDoListService';
+
 const appTaskItemComponent = {
 
 
   template: `
-    <div>
-      <div ng-model="$ctrl.newToDoTitle">Title: {{$ctrl.item.title}}</div>
-      <div ng-model="$ctrl.newToDoDate">Date: {{$ctrl.item.date}}</div>
+    <div ng-init="$ctrl.onInit()">
+      <div>Title: {{$ctrl.item.title}}</div>
+      <div>Date: {{$ctrl.item.date}}</div>
       <div class="textField"> Description: {{$ctrl.item.description}}</div>
       <div>id:{{$ctrl.item.id}}</div>
       <div>Editable id:{{$ctrl.editableItemId}}</div>
@@ -17,14 +19,25 @@ const appTaskItemComponent = {
       </div>
       
       <div ng-if="$ctrl.item.id === $ctrl.editableItemId">
-       <app-textarea-field value="$ctrl.item.description"></app-textarea-field>
-       <app-fancy-button btn-value="Save" handle-click="$ctrl.saveEditableItem(item)"></app-fancy-button>
+       <app-textarea-field 
+         value="$ctrl.newDescription"
+         handle-change="$ctrl.handleChange()"
+       ></app-textarea-field>
+       <app-fancy-button 
+         btn-value="Save" 
+         handle-click="$ctrl.saveEditableItem({id: $ctrl.item.id, newDescription: $ctrl.newDescription })"></app-fancy-button>
       </div>
     </div>`,
 
 
   controller: class AppTaskItemController {
+    newDescription: string;
+    item: IItem;
+    saveEditableItem: any;
 
+    onInit() {
+      this.newDescription = this.item.description;
+    }
   },
 
   bindings: {

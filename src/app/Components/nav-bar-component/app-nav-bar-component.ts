@@ -1,53 +1,34 @@
 import {IItem} from '../../Services/ToDoListService';
 
-const appTasksListComponent = {
-
+const appNavBarComponent = {
   template: `
-    <p>Количество заданий: <span>{{ $ctrl.getQuantityActiveItems() }}</span></p>
-    <app-fancy-button  btn-value="Sort by title down" handle-click="$ctrl.sortByDateDown()"></app-fancy-button>
-    <app-fancy-button  btn-value="Sort by title up" handle-click="$ctrl.sortByDateUp()"></app-fancy-button>
-    
-    <ul class="tasksListComponent">
-      <li class="list-item" ng-repeat="item in $ctrl.todoItems" ng-if="!item.finished">
-        <app-task-item-component
-          item="item"
-          editable-item-id="$ctrl.editableItemId"
-          set-editable-item-id="$ctrl.setEditableItemId(item.id)"
-          change-status="$ctrl.changeStatus(item.id)"
-          
-          save-editable-item="$ctrl.saveEditableItem(id, newDescription)"
-        ></app-task-item-component>
-      </li>
-    </ul>`,
+    <div class="navBar">
+      <app-fancy-button  btn-value="Create task" handle-click="$ctrl.createToDoTask()"></app-fancy-button>
+      <app-search-field input-value="search"></app-search-field>
+      <app-fancy-button  btn-value="All done tasks" handle-click="$ctrl.getAllDoneTasks()"></app-fancy-button>
+      <app-fancy-button  btn-value="Sort by title down" handle-click="$ctrl.sortByDateDown()"></app-fancy-button>
+      <app-fancy-button  btn-value="Sort by title up" handle-click="$ctrl.sortByDateUp()"></app-fancy-button>
+    </div>`,
 
-  controller: class AppTasksListController {
+  controller: class AppNavBarController {
     ToDoListService: any;
     todoItems: IItem[];
-    editableItemId: any;
-    newEditableDescription: string;
+
 
     constructor(ToDoListService) {
       this.ToDoListService = ToDoListService;
       this.todoItems = this.ToDoListService.getTodoItems();
     }
 
-    getQuantityActiveItems(): number {
-      return this.ToDoListService.getQuantityActiveItems();
+    createToDoTask(): void {
+      console.log('new task');
+      this.ToDoListService.showModalCreateCard();
     }
 
-    changeStatus(id: number): void {
-      this.ToDoListService.changeStatus(id);
-    }
-
-    setEditableItemId(id: number): void {
-      this.editableItemId = id;
-    }
-
-    saveEditableItem = (id, newDescription): void => {
-      console.log('id', id);
-      console.log('newDescription', newDescription);
-      this.ToDoListService.saveEditableItem(id, newDescription);
-      this.editableItemId = null;
+    getAllDoneTasks(): void {
+      console.log('done tasks', this.ToDoListService.getAllDoneTasks());
+      console.log('items', this.ToDoListService.getTodoItems());
+      console.log('Active items', this.ToDoListService.getQuantityActiveItems());
     }
 
     sortByDateDown(): void {
@@ -61,7 +42,7 @@ const appTasksListComponent = {
   },
 };
 
-export { appTasksListComponent };
+export { appNavBarComponent };
 
 //
 // Обработка строк (связывание текста и атрибутов)

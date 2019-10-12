@@ -2,20 +2,21 @@ import * as angular from 'angular';
 import * as moment from 'moment';
 import {IItem} from '../../Services/ToDoListService';
 
-const appCreateCardComponent = {
+const appModalCreateCardComponent = {
   controller: class AppCreateCardController {
     newToDoDate: string;
     newToDoTitle: string;
     newToDoTask: string;
     ToDoListService: any;
     todoItems: IItem[];
-
+    isShowModalCreateCard: boolean;
 
     constructor(ToDoListService) {
       this.newToDoTask = '';
       this.newToDoTitle = '';
       this.newToDoDate = '';
       this.ToDoListService = ToDoListService;
+      this.isShowModalCreateCard = this.ToDoListService.isShowModalCreateCard;
 
       this.todoItems = this.ToDoListService.getTodoItems();
     }
@@ -31,6 +32,7 @@ const appCreateCardComponent = {
         title: this.newToDoTitle
       })
       this.clearAddInput();
+      this.ToDoListService.hideModalCreateCard();
     }
 
     setId(): any {
@@ -41,10 +43,16 @@ const appCreateCardComponent = {
       this.newToDoDate = '';
       this.newToDoTitle = '';
     }
+
+    cancelToAddNewTask(): void {
+      this.clearAddInput();
+      this.ToDoListService.hideModalCreateCard();
+    }
   },
   template: `
-  <div class="componentCard">
+<div class="modalWrapper" ng-show="$ctrl.ToDoListService.isShowModalCreateCard">
   <div id="newTask">
+  <h1>New task</h1>
 
     <div>
       <label class="label" for="title">Title:</label>
@@ -73,13 +81,17 @@ const appCreateCardComponent = {
       ></app-textarea-field>
     </div>
 
-    <div>
+    <div class='btnGroup'>
       <app-fancy-button
         btn-value="Add"
         handle-click="$ctrl.addItem()">
       </app-fancy-button>
+    
+      <app-fancy-button
+        btn-value="Cancel"
+        handle-click="$ctrl.cancelToAddNewTask()">
+      </app-fancy-button>
     </div>
-
   </div>
 </div>`,
 
@@ -92,4 +104,4 @@ const appCreateCardComponent = {
   },
 };
 
-export { appCreateCardComponent };
+export { appModalCreateCardComponent };

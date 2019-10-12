@@ -3,10 +3,6 @@ import {IItem} from '../../Services/ToDoListService';
 const appTasksListComponent = {
 
   template: `
-    <p>Количество заданий: <span>{{ $ctrl.getQuantityActiveItems() }}</span></p>
-    <app-fancy-button  btn-value="Sort by date down" handle-click="$ctrl.sortByDateDown()"></app-fancy-button>
-    <app-fancy-button  btn-value="Sort by date up" handle-click="$ctrl.sortByDateUp()"></app-fancy-button>
-    
     <ul class="tasksListComponent">
       <li class="list-item" ng-repeat="item in $ctrl.todoItems" ng-if="!item.finished">
         <app-task-item-component
@@ -14,7 +10,8 @@ const appTasksListComponent = {
           editable-item-id="$ctrl.editableItemId"
           set-editable-item-id="$ctrl.setEditableItemId(item.id)"
           change-status="$ctrl.changeStatus(item.id)"
-          save-editable-item="$ctrl.saveEditableItem(item)"
+          
+          save-editable-item="$ctrl.saveEditableItem(id, newDescription)"
         ></app-task-item-component>
       </li>
     </ul>`,
@@ -23,6 +20,7 @@ const appTasksListComponent = {
     ToDoListService: any;
     todoItems: IItem[];
     editableItemId: any;
+    newEditableDescription: string;
 
     constructor(ToDoListService) {
       this.ToDoListService = ToDoListService;
@@ -38,13 +36,14 @@ const appTasksListComponent = {
     }
 
     setEditableItemId(id: number): void {
-      console.log('editable id: ', id);
       this.editableItemId = id;
     }
 
-    saveEditableItem(item: IItem): void {
-      console.log(item);
-      this.editableItemId = '';
+    saveEditableItem = (id, newDescription): void => {
+      console.log('id', id);
+      console.log('newDescription', newDescription);
+      this.ToDoListService.saveEditableItem(id, newDescription);
+      this.editableItemId = null;
     }
 
     sortByDateDown(): void {
@@ -59,3 +58,11 @@ const appTasksListComponent = {
 };
 
 export { appTasksListComponent };
+
+//
+// Обработка строк (связывание текста и атрибутов)
+// Во время компиляции компилятор сканирует текст и атрибуты,
+//   используя сервис $interpolate для того чтобы узнать,
+//   содержат ли они встроенные выражения.
+//   Эти выражения регистрируются как наблюдаемые и будут обновлены в цикле digest.
+//   Пример обработки строк:

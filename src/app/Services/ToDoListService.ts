@@ -9,38 +9,41 @@ interface IItem {
 
 class ToDoListService {
   items: IItem[];
+  biba: string;
+  isShowModalCreateCard: boolean;
 
   constructor() {
+    this.isShowModalCreateCard = false;
     this.items = [
       {
         id: 1,
         description: 'to eat',
         finished: false,
-        date: 'Wed Sep 25 2019 20:37:56 GMT+0300 (Eastern European Summer Time)',
+        date: '2019-03-14',
         title: 'Home'
       }, {
         id: 2,
         description: 'to sleep',
         finished: false,
-        date: 'Wed Sep 25 2019 20:37:56 GMT+0300 (Eastern European Summer Time)',
+        date: '2019-05-02',
         title: 'Home'
       }, {
         id: 3,
         description: 'to work',
         finished: false,
-        date: 'Wed Sep 25 2019 20:37:56 GMT+0300 (Eastern European Summer Time)',
+        date: '2019-08-11',
         title: 'Work'
       }, {
         id: 4,
         description: 'to learn Angular JS',
         finished: false,
-        date: 'Wed Sep 25 2019 20:37:56 GMT+0300 (Eastern European Summer Time)',
+        date: '2019-07-30',
         title: 'Studies'
       }, {
         id: 5,
         description: 'to meet with friends',
         finished: false,
-        date: 'Wed Sep 25 2019 20:37:56 GMT+0300 (Eastern European Summer Time)',
+        date: '2019-02-27',
         title: 'Friends'
       }
     ];
@@ -71,15 +74,24 @@ class ToDoListService {
     }, this.getTotalLength());
   }
 
+  getAllDoneTasks(): number {
+    return this.items.reduce((acc: number, item: IItem) => {
+      if (item.finished === true) {
+        acc = acc + 1;
+      }
+      return acc;
+    }, 0);
+  }
+
   changeStatus(id: number): void {
     const foundItem = this.findItem(id, this.items);
 
     foundItem.finished = true;
   }
 
-  saveEditableItem(id: number): void  {
+  saveEditableItem(id: number, newEditableDescription: string): void  {
     const itemToUpdate = this.findItem(id, this.items);
-
+    itemToUpdate.description = newEditableDescription;
     console.log(itemToUpdate.description);
   }
 
@@ -93,6 +105,14 @@ class ToDoListService {
     this.items.sort((a, b) => {
       return a.date < b.date ? 1 : -1;
     });
+  }
+
+  showModalCreateCard(): void {
+    this.isShowModalCreateCard = true;
+  }
+
+  hideModalCreateCard(): void {
+    this.isShowModalCreateCard = false;
   }
 
 }

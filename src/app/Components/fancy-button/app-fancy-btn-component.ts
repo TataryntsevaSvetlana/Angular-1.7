@@ -9,6 +9,7 @@ const appFancyButton = {
       {{$ctrl.btnValue}}
     </button>
   `,
+
   bindings: {
     handleClick: '&',
     btnValue: '@'
