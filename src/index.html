@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
+  <script src="https://unpkg.com/@uirouter/angularjs@1.0.23/release/angular-ui-router.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -158,6 +160,9 @@
   </style>
 </head>
   <body ng-app="app-root">
+  <a ui-sref="hello" ui-sref-active="active">Hello</a>
+  <a ui-sref="about" ui-sref-active="active">About</a>
+  <ui-view></ui-view>
 
 <!------------------------ header-------------------------->
     <!--<header class="header"></header>-->
@@ -181,6 +186,6 @@
       <!--</main>-->
 
 
-    </div>
+
   </body>
 </html>
