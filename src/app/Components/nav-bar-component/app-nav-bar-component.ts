@@ -12,17 +12,19 @@ const appNavBarComponent = {
 
   controller: class AppNavBarController {
     ToDoListService: any;
+    ModalService: any;
     todoItems: IItem[];
 
 
-    constructor(ToDoListService) {
+    constructor(ToDoListService, ModalService) {
       this.ToDoListService = ToDoListService;
+      this.ModalService = ModalService;
       this.todoItems = this.ToDoListService.getTodoItems();
     }
 
     createToDoTask(): void {
       console.log('new task');
-      this.ToDoListService.showModalCreateCard();
+      this.ModalService.showModalCreateCard();
     }
 
     getAllDoneTasks(): void {

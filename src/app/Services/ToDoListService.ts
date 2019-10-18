@@ -1,3 +1,5 @@
+import * as moment from '../Components/modals-components/app-modal-edit-task-component';
+
 interface IItem {
   id: number;
   description: string;
@@ -9,11 +11,15 @@ interface IItem {
 
 class ToDoListService {
   items: IItem[];
-  biba: string;
   isShowModalCreateCard: boolean;
+  inputUserName: string;
+  isShowModalEditTask: boolean;
+  itemWithNewDescription: IItem;
+  newEditableDescription: string;
 
   constructor() {
     this.isShowModalCreateCard = false;
+    this.isShowModalEditTask = false;
     this.items = [
       {
         id: 1,
@@ -74,6 +80,16 @@ class ToDoListService {
     }, this.getTotalLength());
   }
 
+  saveEditableItem(itemWithNewDescription): void {
+    this.itemWithNewDescription = itemWithNewDescription;
+    const foundItem = this.findItem(itemWithNewDescription.id, this.items);
+    foundItem.description = itemWithNewDescription.newDescription;
+    this.newEditableDescription = foundItem.description;
+    this.itemWithNewDescription = null;
+
+    console.log(this.items);
+  }
+
   getAllDoneTasks(): number {
     return this.items.reduce((acc: number, item: IItem) => {
       if (item.finished === true) {
@@ -85,14 +101,7 @@ class ToDoListService {
 
   changeStatus(id: number): void {
     const foundItem = this.findItem(id, this.items);
-
     foundItem.finished = true;
-  }
-
-  saveEditableItem(id: number, newEditableDescription: string): void  {
-    const itemToUpdate = this.findItem(id, this.items);
-    itemToUpdate.description = newEditableDescription;
-    console.log(itemToUpdate.description);
   }
 
   sortByDateDown(): void {
@@ -100,21 +109,20 @@ class ToDoListService {
       return a.date > b.date ? 1 : -1;
     });
   }
-  sortByDateUp(): void {
 
+  sortByDateUp(): void {
     this.items.sort((a, b) => {
       return a.date < b.date ? 1 : -1;
     });
   }
 
-  showModalCreateCard(): void {
-    this.isShowModalCreateCard = true;
+  setUserName(userName): void {
+    this.inputUserName = userName;
   }
 
-  hideModalCreateCard(): void {
-    this.isShowModalCreateCard = false;
+  getUserName(): string {
+    return this.inputUserName;
   }
-
 }
 
 

@@ -68,7 +68,7 @@ const appPopUpComponent = {
     item: '=',
     editTask: '&',
     changeStatus: '&',
-    saveEditableItem: '=',
+    saveEditableItem: '&',
   },
 };
 

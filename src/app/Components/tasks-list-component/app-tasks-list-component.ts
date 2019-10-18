@@ -8,23 +8,25 @@ const appTasksListComponent = {
         <app-task-item-component
           item="item"
           editable-item-id="$ctrl.editableItemId"
-          set-editable-item-id="$ctrl.setEditableItemId(item.id)"
+          set-editable-item-id="$ctrl.setEditableItemId(item)"
           change-status="$ctrl.changeStatus(item.id)"
-          
-          save-editable-item="$ctrl.saveEditableItem(id, newDescription)"
+          save-editable-item="$ctrl.newEditableDescription"
         ></app-task-item-component>
       </li>
     </ul>`,
 
   controller: class AppTasksListController {
     ToDoListService: any;
+    ModalService: any;
     todoItems: IItem[];
-    editableItemId: any;
     newEditableDescription: string;
 
-    constructor(ToDoListService) {
+
+    constructor(ToDoListService, ModalService) {
       this.ToDoListService = ToDoListService;
+      this.ModalService = ModalService;
       this.todoItems = this.ToDoListService.getTodoItems();
+      this.newEditableDescription = this.ToDoListService.newEditableDescription;
     }
 
     getQuantityActiveItems(): number {
@@ -35,16 +37,10 @@ const appTasksListComponent = {
       this.ToDoListService.changeStatus(id);
     }
 
-    setEditableItemId(id: number): void {
-      this.editableItemId = id;
+    setEditableItemId(item: IItem): void {
+      this.ModalService.showModalEditTask(item);
     }
 
-    saveEditableItem = (id, newDescription): void => {
-      console.log('id', id);
-      console.log('newDescription', newDescription);
-      this.ToDoListService.saveEditableItem(id, newDescription);
-      this.editableItemId = null;
-    }
 
     sortByDateDown(): void {
       console.log('down');

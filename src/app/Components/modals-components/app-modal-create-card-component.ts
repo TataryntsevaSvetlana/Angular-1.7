@@ -8,16 +8,17 @@ const appModalCreateCardComponent = {
     newToDoTitle: string;
     newToDoTask: string;
     ToDoListService: any;
+    ModalService: any;
     todoItems: IItem[];
     isShowModalCreateCard: boolean;
 
-    constructor(ToDoListService) {
+    constructor(ToDoListService, ModalService) {
       this.newToDoTask = '';
       this.newToDoTitle = '';
       this.newToDoDate = '';
       this.ToDoListService = ToDoListService;
-      this.isShowModalCreateCard = this.ToDoListService.isShowModalCreateCard;
-
+      this.ModalService = ModalService;
+      this.isShowModalCreateCard = this.ModalService.isShowModalCreateCard;
       this.todoItems = this.ToDoListService.getTodoItems();
     }
 
@@ -32,7 +33,7 @@ const appModalCreateCardComponent = {
         title: this.newToDoTitle
       })
       this.clearAddInput();
-      this.ToDoListService.hideModalCreateCard();
+      this.ModalService.hideModalCreateCard();
     }
 
     setId(): any {
@@ -46,11 +47,11 @@ const appModalCreateCardComponent = {
 
     cancelToAddNewTask(): void {
       this.clearAddInput();
-      this.ToDoListService.hideModalCreateCard();
+      this.ModalService.hideModalCreateCard();
     }
   },
   template: `
-<div class="modalWrapper" ng-show="$ctrl.ToDoListService.isShowModalCreateCard">
+<div class="modalWrapper" ng-show="$ctrl.ModalService.isShowModalCreateCard">
   <div id="newTask">
   <h1>New task</h1>
 
@@ -100,7 +101,7 @@ const appModalCreateCardComponent = {
     item: '=',
     editTask: '&',
     changeStatus: '&',
-    saveEditableItem: '=',
+    saveEditableItem: '&',
   },
 };
 

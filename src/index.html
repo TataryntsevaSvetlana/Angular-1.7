@@ -19,6 +19,9 @@
       border-bottom: 1px solid grey;
       width: 100%;
       background-color: white;
+      display: flex;
+      justify-content: start;
+      align-items: center;
     }
 
     .wrapper {
@@ -160,32 +163,22 @@
   </style>
 </head>
   <body ng-app="app-root">
-  <a ui-sref="hello" ui-sref-active="active">Hello</a>
-  <a ui-sref="about" ui-sref-active="active">About</a>
-  <ui-view></ui-view>
+    <header class="header">
+      <a ui-sref="about" ui-sref-active="active">
+        <button>About</button>
+      </a>
+      <a ui-sref="todolist" ui-sref-active="active">
+        <button>ToDoList</button>
+      </a>
 
-<!------------------------ header-------------------------->
-    <!--<header class="header"></header>-->
-    <!--<div class="wrapper">-->
+      <h1>Hi, {{inputUserName}}!</h1>
+    </header>
+    <div class="wrapper">
+      <app-modal-create-card-component></app-modal-create-card-component>
+      <app-modal-edit-task-component></app-modal-edit-task-component>
 
-<!------------------------ modal-------------------------->
-      <!--<app-modal-create-card-component></app-modal-create-card-component>-->
+      <ui-view></ui-view>
 
-
-
-<!------------------------ sidebar-------------------------->
-      <!--<aside class="aside">-->
-        <!--<app-nav-bar-component></app-nav-bar-component>-->
-      <!--</aside>-->
-
-
-
-<!------------------------ main-------------------------->
-      <!--<main class="main">-->
-        <!--<app-tasks-list-component></app-tasks-list-component>-->
-      <!--</main>-->
-
-
-
+    </div>
   </body>
 </html>
