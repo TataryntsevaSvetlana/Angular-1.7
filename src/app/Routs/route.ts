@@ -20,6 +20,7 @@ const routeConfig = ($locationProvider, $stateProvider) => {
       name: 'about',
       url: '/',
       template: `
+          <app-header-component></app-header-component>
           <app-about-component></app-about-component>
 `    };
 

@@ -1,7 +1,8 @@
 import {IItem} from './ToDoListService';
 
 class ModalService {
-  item: IItem
+  editableId: number;
+  editableDescription: string;
   isShowModalCreateCard: boolean;
   inputUserName: string;
   isShowModalEditTask: boolean;
@@ -21,7 +22,8 @@ class ModalService {
 
   showModalEditTask(item: IItem): void {
     this.isShowModalEditTask = true;
-    this.item = item;
+    this.editableId = item.id;
+    this.editableDescription = item.description;
   }
 
   hideModalEditTask(): void {

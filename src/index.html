@@ -5,6 +5,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.8/angular.js"></script>
   <script src="https://unpkg.com/@uirouter/angularjs@1.0.23/release/angular-ui-router.min.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -15,18 +17,18 @@
       z-index: 10;
       left: 0;
       top: 0;
-      height: 50px;
+      height: 100px;
       border-bottom: 1px solid grey;
       width: 100%;
       background-color: white;
       display: flex;
-      justify-content: start;
+      justify-content: space-between;
       align-items: center;
     }
 
     .wrapper {
       position: relative;
-      top: 50px;
+      top: 100px;
     }
 
     .modalWrapper {
@@ -163,22 +165,11 @@
   </style>
 </head>
   <body ng-app="app-root">
-    <header class="header">
-      <a ui-sref="about" ui-sref-active="active">
-        <button>About</button>
-      </a>
-      <a ui-sref="todolist" ui-sref-active="active">
-        <button>ToDoList</button>
-      </a>
-
-      <h1>Hi, {{inputUserName}}!</h1>
-    </header>
+    <app-header-component></app-header-component>
     <div class="wrapper">
       <app-modal-create-card-component></app-modal-create-card-component>
       <app-modal-edit-task-component></app-modal-edit-task-component>
-
       <ui-view></ui-view>
-
     </div>
   </body>
 </html>

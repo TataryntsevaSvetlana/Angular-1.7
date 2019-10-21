@@ -6,6 +6,7 @@ const appNavBarComponent = {
       <app-fancy-button  btn-value="Create task" handle-click="$ctrl.createToDoTask()"></app-fancy-button>
       <app-search-field input-value="search"></app-search-field>
       <app-fancy-button  btn-value="All done tasks" handle-click="$ctrl.getAllDoneTasks()"></app-fancy-button>
+      <app-fancy-button  btn-value="Tasks in work" handle-click="$ctrl.getAllWorkTasks()"></app-fancy-button>
       <app-fancy-button  btn-value="Sort by title down" handle-click="$ctrl.sortByDateDown()"></app-fancy-button>
       <app-fancy-button  btn-value="Sort by title up" handle-click="$ctrl.sortByDateUp()"></app-fancy-button>
     </div>`,
@@ -29,8 +30,11 @@ const appNavBarComponent = {
 
     getAllDoneTasks(): void {
       console.log('done tasks', this.ToDoListService.getAllDoneTasks());
-      console.log('items', this.ToDoListService.getTodoItems());
-      console.log('Active items', this.ToDoListService.getQuantityActiveItems());
+      this.ToDoListService.getAllDoneTasks();
+    }
+    getAllWorkTasks(): void {
+      console.log('done tasks', this.ToDoListService.getAllWorkTasks());
+      this.ToDoListService.getAllWorkTasks();
     }
 
     sortByDateDown(): void {

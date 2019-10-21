@@ -5,7 +5,7 @@ const appFancyButton = {
 
 
   template: `
-    <button class="btn-primary" ng-click="$ctrl.handleClick()">
+    <button class="waves-effect waves-light btn" ng-click="$ctrl.handleClick()">
       {{$ctrl.btnValue}}
     </button>
   `,

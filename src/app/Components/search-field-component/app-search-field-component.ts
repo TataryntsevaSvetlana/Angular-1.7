@@ -1,9 +1,12 @@
 const appSearchFieldComponent = {
   controller: class SearchFieldController {},
   template: `
-    <input
-      class="searchField"
+
+<div class="search">
+  <label for="inputUserNameField">Search:</label>
+  <input id="inputUserNameField" ng-blur="$ctrl.inputValue"
       ng-model='$ctrl.inputValue'>
+  </div>
     `,
   bindings: {
     inputValue: '=',

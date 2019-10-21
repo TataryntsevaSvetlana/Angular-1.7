@@ -5,7 +5,7 @@ const appTaskItemComponent = {
 
   template: `
     <div>
-      <div>Title: {{$ctrl.item.title}}</div>
+      <div class="card-title">Title: {{$ctrl.item.title}}</div>
       <div>Date: {{$ctrl.item.date}}</div>
       <div class="textField"> Description: {{$ctrl.item.description}}</div>
       <div>id:{{$ctrl.item.id}}</div>

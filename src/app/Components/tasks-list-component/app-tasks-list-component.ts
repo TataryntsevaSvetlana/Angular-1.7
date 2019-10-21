@@ -1,10 +1,21 @@
 import {IItem} from '../../Services/ToDoListService';
 
 const appTasksListComponent = {
-
   template: `
-    <ul class="tasksListComponent">
-      <li class="list-item" ng-repeat="item in $ctrl.todoItems" ng-if="!item.finished">
+    <ul class="tasksListComponent" ng-if="!$ctrl.ToDoListService.doneTasksList">
+      <li class="card card-content" ng-repeat="item in $ctrl.todoItems" ng-if="!item.finished">
+        <app-task-item-component
+          item="item"
+          editable-item-id="$ctrl.editableItemId"
+          set-editable-item-id="$ctrl.setEditableItemId(item)"
+          change-status="$ctrl.changeStatus(item.id)"
+          save-editable-item="$ctrl.newEditableDescription"
+        ></app-task-item-component>
+      </li>
+    </ul>
+
+  <ul class="tasksListComponent" ng-if="$ctrl.ToDoListService.doneTasksList">
+      <li class="card card-content" ng-repeat="item in $ctrl.todoItems" ng-if="item.finished">
         <app-task-item-component
           item="item"
           editable-item-id="$ctrl.editableItemId"

@@ -14,12 +14,13 @@ class ToDoListService {
   isShowModalCreateCard: boolean;
   inputUserName: string;
   isShowModalEditTask: boolean;
-  itemWithNewDescription: IItem;
   newEditableDescription: string;
+  doneTasksList: boolean;
 
   constructor() {
     this.isShowModalCreateCard = false;
     this.isShowModalEditTask = false;
+    this.doneTasksList = false;
     this.items = [
       {
         id: 1,
@@ -55,23 +56,23 @@ class ToDoListService {
     ];
   }
 
-  getTodoItems(): IItem[] {
+  public getTodoItems(): IItem[] {
     return this.items;
   }
 
-  addItem(obj: IItem): void {
+  public addItem(obj: IItem): void {
     this.items.push(obj);
   }
 
-  findItem(id: number, arr: IItem[]): IItem {
+  private findItem(id: number, arr: IItem[]): IItem {
     return arr.find(el => el.id === id);
   }
 
-  getTotalLength(): number {
+  private getTotalLength(): number {
     return this.items.length;
   }
 
-  getQuantityActiveItems(): number {
+  public getQuantityActiveItems(): number {
     return this.items.reduce((acc: number, item: IItem) => {
       if (item.finished !== false) {
         acc = acc - 1;
@@ -80,17 +81,18 @@ class ToDoListService {
     }, this.getTotalLength());
   }
 
-  saveEditableItem(itemWithNewDescription): void {
-    this.itemWithNewDescription = itemWithNewDescription;
-    const foundItem = this.findItem(itemWithNewDescription.id, this.items);
-    foundItem.description = itemWithNewDescription.newDescription;
-    this.newEditableDescription = foundItem.description;
-    this.itemWithNewDescription = null;
-
-    console.log(this.items);
+  public saveEditableItem(description, id): void {
+    const foundItem = this.findItem(id, this.items);
+    foundItem.description = description;
   }
 
-  getAllDoneTasks(): number {
+  public getAllWorkTasks(): number {
+    this.doneTasksList = false;
+    return this.getQuantityActiveItems();
+  }
+
+  public getAllDoneTasks(): number {
+    this.doneTasksList = true;
     return this.items.reduce((acc: number, item: IItem) => {
       if (item.finished === true) {
         acc = acc + 1;
@@ -99,18 +101,18 @@ class ToDoListService {
     }, 0);
   }
 
-  changeStatus(id: number): void {
+  public changeStatus(id: number): void {
     const foundItem = this.findItem(id, this.items);
     foundItem.finished = true;
   }
 
-  sortByDateDown(): void {
+  public sortByDateDown(): void {
       this.items.sort((a, b) => {
       return a.date > b.date ? 1 : -1;
     });
   }
 
-  sortByDateUp(): void {
+  public sortByDateUp(): void {
     this.items.sort((a, b) => {
       return a.date < b.date ? 1 : -1;
     });

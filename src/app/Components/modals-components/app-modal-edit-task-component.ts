@@ -8,21 +8,18 @@ const appModalEditTaskComponent = {
     ToDoListService: any;
     ModalService: any;
 
-
     constructor(ToDoListService, ModalService) {
       this.ToDoListService = ToDoListService;
       this.ModalService = ModalService;
-      console.log('app modal edit task this:', this);
     }
 
     clearAddInput(): void {
-      console.log('clear input');
-      this.ModalService.item.description = '';
+      this.ModalService.editableId = null;
+      this.ModalService.editableDescription = '';
     }
 
-    saveEditableItem(itemWithNewDescription): void {
-      console.log('save editable object', itemWithNewDescription);
-      this.ToDoListService.saveEditableItem(itemWithNewDescription);
+    saveEditableItem(description, id): void {
+      this.ToDoListService.saveEditableItem(description, id);
       this.ModalService.hideModalEditTask();
       this.clearAddInput();
     }
@@ -34,38 +31,30 @@ const appModalEditTaskComponent = {
     }
   },
   template: `
-<div class="modalWrapper" ng-show="$ctrl.ModalService.isShowModalEditTask">
-  <div id="newTask">
-  <h1>Edit task</h1>
-
-    <div>
-      <label class="label" for="description">Description:</label>
-      <app-textarea-field
-        id="description"
-        value="$ctrl.ModalService.item.description"
-      ></app-textarea-field>
-    </div>
-    <div class='btnGroup'>
-      <app-fancy-button 
-         btn-value="Save" 
-         handle-click="$ctrl.saveEditableItem($ctrl.ModalService.item)">  
-      </app-fancy-button>
-      
-      <app-fancy-button
-        btn-value="Cancel"
-        handle-click="$ctrl.cancelToEditTask()">
-      </app-fancy-button>
-    </div>
-  </div>
-</div>`,
-  //
-  // bindings: {
-  //   editableItemId: '=',
-  //   item: '=',
-  //   editTask: '&',
-  //   changeStatus: '&',
-  //   saveEditableItem: '&',
-  // },
+    <div class="modalWrapper" ng-show="$ctrl.ModalService.isShowModalEditTask">
+      <div id="newTask">
+      <h1>Edit task</h1>
+    
+        <div>
+          <label class="label" for="description">Description:</label>
+          <app-textarea-field
+            id="description"
+            value="$ctrl.ModalService.editableDescription"
+          ></app-textarea-field>
+        </div>
+        <div class='btnGroup'>
+          <app-fancy-button 
+             btn-value="Save" 
+             handle-click="$ctrl.saveEditableItem($ctrl.ModalService.editableDescription, $ctrl.ModalService.editableId)">  
+          </app-fancy-button>
+          
+          <app-fancy-button
+            btn-value="Cancel"
+            handle-click="$ctrl.cancelToEditTask()">
+          </app-fancy-button>
+        </div>
+      </div>
+    </div>`,
 };
 
 export { appModalEditTaskComponent };

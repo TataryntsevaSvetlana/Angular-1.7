@@ -1,4 +1,5 @@
 import { module } from 'angular';
+import { appHeaderComponent } from "./Components/header-component/app-header-component";
 import { appNavBarComponent} from './Components/nav-bar-component/app-nav-bar-component';
 import { appAboutComponent} from './Components/about-component/app-about-component';
 import { appModalCreateCardComponent} from './Components/modals-components/app-modal-create-card-component';
@@ -16,6 +17,7 @@ import { routeConfig } from './Routs/route';
 
 module('app-root', ['ui.router'])
 .component('appAboutComponent', appAboutComponent)
+.component('appHeaderComponent', appHeaderComponent)
 .component('appNavBarComponent', appNavBarComponent)
 .component('appTasksListComponent', appTasksListComponent)
 .component('appModalCreateCardComponent', appModalCreateCardComponent)

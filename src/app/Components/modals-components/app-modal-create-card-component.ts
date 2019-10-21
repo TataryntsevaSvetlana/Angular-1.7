@@ -54,12 +54,13 @@ const appModalCreateCardComponent = {
 <div class="modalWrapper" ng-show="$ctrl.ModalService.isShowModalCreateCard">
   <div id="newTask">
   <h1>New task</h1>
-
+    
     <div>
       <label class="label" for="title">Title:</label>
-      <select
+      <select 
         id='title'
-        ng-model='$ctrl.newToDoTitle'>
+        ng-model='$ctrl.newToDoTitle'
+        type="select">
         <option value="Home">Home</option>
         <option value="Work">Work</option>
         <option value="Studies">Studies</option>
